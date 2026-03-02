@@ -10,11 +10,15 @@ services:
     depends_on:
       - php
 
-  php:
-    image: php:7.4-fpm
-    volumes:
-      - ./index.php:/var/www/html/index.php
-
+php:
+  build:
+    context: .
+    dockerfile: Dockerfile-php
+  volumes:
+    - ./index.php:/var/www/html/index.php
+  depends_on:
+    - db
+    
   db:
     image: mysql:5.7
     environment:
