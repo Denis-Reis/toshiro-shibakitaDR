@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   nginx:
     image: nginx:latest
@@ -10,15 +11,15 @@ services:
     depends_on:
       - php
 
-php:
-  build:
-    context: .
-    dockerfile: Dockerfile-php
-  volumes:
-    - ./index.php:/var/www/html/index.php
-  depends_on:
-    - db
-    
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    volumes:
+      - ./index.php:/var/www/html/index.php
+    depends_on:
+      - db
+
   db:
     image: mysql:5.7
     environment:
